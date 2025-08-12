@@ -25,7 +25,7 @@ class testCore {
         Assertions.assertEquals(false, member.addToBasket(bagel));
 
 
-        //recreate in order to test capacity
+        //recreate to test capacity
         currentStock = new HashMap<>();
         currentStock.put(bagel, 2);
         list = new ArrayList<>();
@@ -75,7 +75,7 @@ class testCore {
         Assertions.assertEquals(true, member.removeFromBasket(bagel1));
 
         //does not exist
-        Assertions.assertEquals(false, member.addToBasket(bagel2));
+        Assertions.assertEquals(false, member.removeFromBasket(bagel2));
 
         //remove the last:
         Assertions.assertEquals(true, member.removeFromBasket(bagel1));
@@ -113,25 +113,25 @@ class testCore {
 
         ArrayList<Item> list = new ArrayList<>();
         HashMap<Item, Integer> currentStock = new HashMap<>();
-        currentStock.put(bagel1, 2);
-        currentStock.put(bagel2, 2);
+        currentStock.put(bagel1, 4);
+        currentStock.put(bagel2, 4);
 
         Basket basket = new Basket(4, list, currentStock );
         //how does extend work here?
         Customer customer = new Customer(0.00f,basket);
 
-        Assertions.assertEquals(0.00f, customer.setTotalCost());
+        Assertions.assertEquals(0.00f, customer.getTotalCost());
 
         customer.addToBasket(bagel1);
 
-        Assertions.assertEquals(0.49f, customer.setTotalCost());
+        Assertions.assertEquals(0.49f, customer.getTotalCost());
 
         customer.addToBasket(bagel1);
-        Assertions.assertEquals(0.49f*2, customer.setTotalCost());
+        Assertions.assertEquals(0.49f*2, customer.getTotalCost());
 
 
         customer.addToBasket(bagel1);
-        Assertions.assertEquals(0.49f*3, customer.setTotalCost());
+        Assertions.assertEquals(0.49f*3, customer.getTotalCost());
 
 
 
@@ -198,8 +198,10 @@ class testCore {
 
         //item exists
         Assertions.assertEquals(true, Manager.setCurrentStock(coffe2,25));
+        Assertions.assertEquals(true, Manager.setCurrentStock(coffe3,20));
+
         //item does not exist
-        Assertions.assertEquals(false, Manager.setCurrentStock(coffe3,20));
+        Assertions.assertEquals(false, Manager.setCurrentStock(null,20));
 
     }
 

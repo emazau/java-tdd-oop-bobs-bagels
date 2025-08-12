@@ -62,7 +62,6 @@ I want customers to only be able to order things that we stock in our inventory.
 | Classes   | Variables             | Method                                              | Scenario                  | Output                                    |
 |-----------|-----------------------|-----------------------------------------------------|---------------------------|-------------------------------------------|
 | Member    | Member.basket         | boolean addBagel(Item type)                         | If type is valid          | true                                      |
-| Item      |                       |                                                     | If type is not valid      | false                                     |
 | Basket    |                       |                                                     | if cap is reached         | false                                     |
 | Bagel     |                       |                                                     | inventory is empty        | false                                     |
 | --------  | ------------------- - | ------------------------------------------------    | ------------------------  | ---------------------------------------   |

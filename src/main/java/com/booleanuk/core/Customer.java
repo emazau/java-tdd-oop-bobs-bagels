@@ -8,16 +8,14 @@ public class Customer extends Member{
         this.totalCost = totalCost;
     }
 
-    public Float getTotalCost(){
-        return 0.00f;
-    }
 
-    public Float setTotalCost() {
+    public Float getTotalCost() {
 
-        return 0.00f;
+        return basket.getTotalCost();
     }
     public Float getPrice(Item item){
-        return 0.00f;
+
+        return item.getPrice();
     }
 
     public Float getItemCost(Item item){
