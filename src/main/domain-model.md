@@ -59,25 +59,39 @@ So we don't get any weird requests,
 I want customers to only be able to order things that we stock in our inventory.
 ```
 
-| Classes   | Variables             | Method                                              | Scenario                  | Output                                    |
-|-----------|-----------------------|-----------------------------------------------------|---------------------------|-------------------------------------------|
-| Member    | Member.basket         | boolean addBagel(Item type)                         | If type is valid          | true                                      |
-| Basket    |                       |                                                     | if cap is reached         | false                                     |
-| Bagel     |                       |                                                     | inventory is empty        | false                                     |
-| --------  | ------------------- - | ------------------------------------------------    | ------------------------  | ---------------------------------------   |
-| Member    | Member.basket         | boolean removeFromBasket(string bagelName)          | if bagel exists           | true                                      |
-|           |                       |                                                     | if bagel does not exist   | false                                     |
-|           |                       |                                                     | if basket is empty        | false                                     |
-| --------  | --------------------- | -------------------------------------------------   | ------------------------  | ---------------------------------------   |
-| Basket    | Basket.maxCapacity    | boolean member.setCapacity(int cap)                 | if basketcap is negative  | false                                     |
-|           | Basket.items          |                                                     | if Basketcap is 0-100     | true                                      |
-|           |                       |                                                     | if bascetcap is >100      | false                                     |
-| --------  | --------------------  | --------------------------------------------------- | ------------------------  | ----------------------------------------- |
-| Customer  | Customer.totalcost    | Float getTotalcost()                                | It the basket is empty    | 0.00                                      |
-|           |                       |                                                     | if it has items           | price of basket                           |
-| --------- | -------------------   | --------------------------------------------------- | ------------------------- | ----------------------------------------- |
-| Customer  | Item.price            | Float getPrice(Item item)                           | if price for item found   | price of item                             |
-| --------- | --------------------- | -------------------------------------------------   | -----------------------   | ----------------------------------------  |
-|           |                       |                                                     |                           |                                           |
-| Basket    | Basket.currentStock   | boolean setCurrentStock(item item, Integer amount)  | if item is valid          | true                                      |
-|           |                       |                                                     | if item does not exist    | false                                     |
+| Classes   | Variables             | Method                                              | Scenario                            | Output                                     |
+|-----------|-----------------------|-----------------------------------------------------|-------------------------------------|--------------------------------------------|
+| Member    | Member.basket         | boolean addBagel(Item type)                         | If type is valid                    | true                                       |
+| Basket    |                       |                                                     | if cap is reached                   | false                                      |
+| Bagel     |                       |                                                     | inventory is empty                  | false                                      |
+| --------  | ------------------- - | ------------------------------------------------    | ------------------------            | ---------------------------------------    |
+| Member    | Member.basket         | boolean removeFromBasket(string bagelName)          | if bagel exists                     | true                                       |
+|           |                       |                                                     | if bagel does not exist             | false                                      |
+|           |                       |                                                     | if basket is empty                  | false                                      |
+| --------  | --------------------- | -------------------------------------------------   | ------------------------            | ---------------------------------------    |
+| Basket    | Basket.maxCapacity    | boolean member.setCapacity(int cap)                 | if basketcap is negative            | false                                      |
+|           | Basket.items          |                                                     | if Basketcap is 0-100               | true                                       |
+|           |                       |                                                     | if bascetcap is >100                | false                                      |
+| --------  | --------------------  | --------------------------------------------------- | ------------------------            | -----------------------------------------  |
+| Customer  | Customer.totalcost    | Float getTotalcost()                                | It the basket is empty              | 0.00                                       |
+|           |                       |                                                     | if it has items                     | price of basket                            |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     |                                     |                                            |
+|           | Customer.addDiscount  | Float addDiscount()                                 | if basket does qualify for discount | return Float as the amount the discount is |
+|           |                       |                                                     | if basket does not have discount    | return 0.00f                               |
+|           |                       |                                                     |                                     |                                            |
+|           |                       |                                                     |                                     |                                            |
+| --------- | -------------------   | --------------------------------------------------- | -------------------------           | -----------------------------------------  |
+| Customer  | Item.price            | Float getPrice(Item item)                           | if price for item found             | price of item                              |
+| --------- | --------------------- | -------------------------------------------------   | -----------------------             | ----------------------------------------   |
+|           |                       |                                                     |                                     |                                            |
+| Basket    | Basket.currentStock   | boolean setCurrentStock(item item, Integer amount)  | if item is valid                    | true                                       |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |
+|           |                       |                                                     | if item does not exist              | false                                      |

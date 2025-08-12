@@ -128,7 +128,6 @@ class testCore {
         Assertions.assertEquals(0.00f, customer.getTotalCost());
 
         customer.addToBasket(bagel1);
-
         Assertions.assertEquals(0.49f, customer.getTotalCost());
 
         customer.addToBasket(bagel1);
@@ -137,6 +136,113 @@ class testCore {
 
         customer.addToBasket(bagel1);
         Assertions.assertEquals(0.49f*3, customer.getTotalCost());
+
+
+
+    }
+    @Test
+    public void checkDiscountTest(){
+        Item bagel1 = new Bagel(0.49f,"Bagel", "Plain","BGLP");
+        Item filling1 = new Filling(0.12f,"Filling", "Egg","FILE");
+        Item coffe1 = new Coffe(0.99f,"Coffee", "Black","COFB");
+        ArrayList<Item> list = new ArrayList<>();
+        HashMap<Item, Integer> currentStock = new HashMap<>();
+
+        currentStock.put(bagel1, 80);
+        currentStock.put(filling1, 80);
+        currentStock.put(coffe1, 80);
+
+        Manager manager = new Manager(currentStock, 80);
+        Basket basket = new Basket(list);
+        Customer customer1 = new Customer(basket);
+
+        Customer customer2 = new Customer(basket);
+        Customer customer3 = new Customer(basket);
+        Customer customer4 = new Customer(basket);
+
+
+        //No discount
+        customer1.addToBasket(bagel1);
+        customer1.addToBasket(bagel1);
+        customer1.addToBasket(bagel1);
+        customer1.addToBasket(bagel1);
+        customer1.addToBasket(bagel1);
+        Assertions.assertEquals(0.49f*5, customer1.getTotalCost());
+
+        customer1.addToBasket(filling1);
+        customer1.addToBasket(filling1);
+
+        Assertions.assertEquals(0.49f*5+2*0.12f, customer1.getTotalCost());
+
+        customer2.addToBasket(coffe1);
+
+        customer2.addToBasket(coffe1);
+        customer2.addToBasket(coffe1);
+        customer2.addToBasket(coffe1);
+        customer2.addToBasket(coffe1);
+        customer2.addToBasket(coffe1);
+
+        Assertions.assertEquals(0.99f*6, customer2.getTotalCost());
+
+        //Discount 1
+
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+
+        Assertions.assertEquals(2.49f, customer3.getTotalCost());
+
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+
+
+        Assertions.assertEquals(2.49f+0.49f*5, customer3.getTotalCost());
+
+        customer3.addToBasket(filling1);
+        customer3.addToBasket(filling1);
+
+        Assertions.assertEquals(2.49f+0.49f*5+2*0.12f, customer3.getTotalCost());
+
+
+
+        customer3.addToBasket(bagel1);
+        Assertions.assertEquals(3.99f+2*0.12f, customer3.getTotalCost());
+
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        customer3.addToBasket(bagel1);
+        Assertions.assertEquals(3.99f+2.49f+2*0.12f, customer3.getTotalCost());
+
+
+        //Discount 4
+        customer4.addToBasket(bagel1);
+        customer4.addToBasket(coffe1);
+
+        Assertions.assertEquals(0.99f, customer4.getTotalCost());
+
+        customer4.addToBasket(bagel1);
+
+        Assertions.assertEquals(0.99f+0.49f, customer4.getTotalCost());
+
+
+
+        //Many Discounts
+
+        customer3.addToBasket(coffe1);
+        Assertions.assertEquals(3.99f+2.49f+2*0.12f+0.99f, customer3.getTotalCost());
+        customer3.addToBasket(coffe1);
+        Assertions.assertEquals(3.99f+2.49f+2*0.12f+0.99f*2, customer3.getTotalCost());
+        customer3.addToBasket(bagel1);
+        Assertions.assertEquals(3.99f+2.49f+2*0.12f+0.99f+1.25f, customer3.getTotalCost());
 
 
 
