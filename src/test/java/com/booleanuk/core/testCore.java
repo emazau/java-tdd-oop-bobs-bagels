@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 class testCore {
     @Test
@@ -14,7 +13,8 @@ class testCore {
         ArrayList<Item> list = new ArrayList<>();
         HashMap<Item, Integer> currentStock = new HashMap<>();
         currentStock.put(bagel, 2);
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
+        Manager manager = new Manager(currentStock, 4);
         Member member = new Member(basket);
 
 
@@ -26,13 +26,15 @@ class testCore {
 
 
         //recreate to test capacity
-        currentStock = new HashMap<>();
-        currentStock.put(bagel, 2);
+        Manager.currentStock.put(bagel, 9);
         list = new ArrayList<>();
-        basket = new Basket(1, list, currentStock );
+        basket = new Basket(list);
         member = new Member(basket);
 
         //add a test where the inventory is empty.
+        Assertions.assertEquals(true, member.addToBasket(bagel));
+        Assertions.assertEquals(true, member.addToBasket(bagel));
+        Assertions.assertEquals(true, member.addToBasket(bagel));
         Assertions.assertEquals(true, member.addToBasket(bagel));
         Assertions.assertEquals(false, member.addToBasket(bagel));
 
@@ -55,8 +57,9 @@ class testCore {
         HashMap<Item, Integer> currentStock = new HashMap<>();
         currentStock.put(bagel1, 2);
         currentStock.put(bagel2, 2);
+        Manager manager = new Manager(currentStock, 4);
 
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
         Member member = new Member(basket);
 
         //the tests
@@ -92,17 +95,18 @@ class testCore {
         HashMap<Item, Integer> currentStock = new HashMap<>();
         currentStock.put(bagel1, 2);
         currentStock.put(bagel2, 2);
+        Manager manager = new Manager(currentStock, 4);
 
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
         Member member = new Member(basket);
 
         //set the capacity;
         //QUESTION! is it better to have member.setcapacity than member.basket.setcapacity?
-        Assertions.assertEquals(true, member.setMaxCapacity(10));
-        Assertions.assertEquals(true, member.setMaxCapacity(50));
-        Assertions.assertEquals(true, member.setMaxCapacity(80));
-        Assertions.assertEquals(false, member.setMaxCapacity(-10));
-        Assertions.assertEquals(false, member.setMaxCapacity(120));
+        Assertions.assertEquals(true, manager.setMaxCapacity(10));
+        Assertions.assertEquals(true, manager.setMaxCapacity(50));
+        Assertions.assertEquals(true, manager.setMaxCapacity(80));
+        Assertions.assertEquals(false, manager.setMaxCapacity(-10));
+        Assertions.assertEquals(false, manager.setMaxCapacity(120));
 
     }
     @Test
@@ -115,10 +119,11 @@ class testCore {
         HashMap<Item, Integer> currentStock = new HashMap<>();
         currentStock.put(bagel1, 4);
         currentStock.put(bagel2, 4);
+        Manager manager = new Manager(currentStock, 4);
 
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
         //how does extend work here?
-        Customer customer = new Customer(0.00f,basket);
+        Customer customer = new Customer(basket);
 
         Assertions.assertEquals(0.00f, customer.getTotalCost());
 
@@ -154,9 +159,9 @@ class testCore {
 //
 //        currentStock.put(filling1, 10);
 
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
         //how does extend work here?
-        Customer customer = new Customer(0.00f,basket);
+        Customer customer = new Customer(basket);
 
 
         Assertions.assertEquals(0.12f, customer.getPrice(filling1));
@@ -191,10 +196,11 @@ class testCore {
 //
         currentStock.put(filling1, 10);
         currentStock.put(coffe2,20);
+        Manager manager = new Manager(currentStock, 4);
 
-        Basket basket = new Basket(4, list, currentStock );
+        Basket basket = new Basket(list);
         //how does extend work here?
-        Customer customer = new Customer(0.00f,basket);
+        Customer customer = new Customer(basket);
 
         //item exists
         Assertions.assertEquals(true, Manager.setCurrentStock(coffe2,25));

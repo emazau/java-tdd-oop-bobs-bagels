@@ -4,19 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Manager {
-    private String ID;
     public static HashMap<Item, Integer> currentStock; //Should I use hashMap instead here maybe?
     public static Integer maxCapacity;
 
 
-    public Manager(String ID, HashMap<Item, Integer> currentStock) {
+    public Manager(HashMap<Item, Integer> currentStock, Integer maxCapacity) {
 
-        this.ID = ID;
         Manager.currentStock = currentStock;
+        Manager.maxCapacity = maxCapacity;
+    }
+
+    public boolean setMaxCapacity(Integer maxCapacity) {
+        if (maxCapacity >0 && maxCapacity <= 100){
+            Manager.maxCapacity = maxCapacity;
+            return true;
+        }
+        return false;
     }
 
     public static boolean setCurrentStock(Item item, Integer quantity){
-
         if (item!=null){
             Manager.currentStock.put(item, quantity);
             return true;
@@ -25,13 +31,6 @@ public class Manager {
     }
 
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
 
 
 }
